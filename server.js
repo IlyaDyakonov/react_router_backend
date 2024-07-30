@@ -20,23 +20,23 @@ app.use(function (req, res, next) {
 let posts = [];
 let nextId = 1;
 
-app.get("/posts", (req, res) => {
+app.get("/tasktwo/posts", (req, res) => {
     res.send(JSON.stringify(posts));
 });
 
-app.get("/posts/:id", (req, res) => {
+app.get("/tasktwo/posts/:id", (req, res) => {
     const postId = Number(req.params.id);
     const index = posts.findIndex((o) => o.id === postId);
     res.send(JSON.stringify({ post: posts[index] }));
 });
 
-app.post("/posts", (req, res) => {
+app.post("/tasktwo/posts", (req, res) => {
     posts.push({ ...req.body, id: nextId++, created: Date.now() });
     res.status(204);
     res.end();
 });
 
-app.put("/posts/:id", (req, res) => {
+app.put("/tasktwo/posts/:id", (req, res) => {
     const postId = Number(req.params.id);
     posts = posts.map((o) => {
         if (o.id === postId) {
@@ -51,7 +51,7 @@ app.put("/posts/:id", (req, res) => {
     res.status(204).end();
 });
 
-app.delete("/posts/:id", (req, res) => {
+app.delete("/tasktwo/posts/:id", (req, res) => {
     const postId = Number(req.params.id);
     const index = posts.findIndex((o) => o.id === postId);
     if (index !== -1) {
